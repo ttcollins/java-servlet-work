@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-  <%@tag description="Student's home page" pageEncoding="UTF-8"%>
+    <%@page language="java" import="java.util.*"%>
 
 <head>
 
@@ -163,7 +163,34 @@
         <div class="container-fluid">
 
           <!-- Page Heading -->
-          <jsp:doBody/>
+          <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800">Pending Approval</h1>
+          </div>
+    
+          <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+              <tbody>
+                <tr>
+                  <td><b>First Name</b></td>
+                  <td><b>Last Name</b></td>
+                  <td><b>Gender</b></td>
+                  <td><b>Contact</b></td>
+                  <td><b>Email</b></td>
+                  <td><b>Role</b></td>
+                </tr>
+                <%Iterator itr;%>
+                <% List data = (List)request.getAttribute("data");
+                    for(itr=data.iterator(); itr.hasNext();) {%>
+                <tr>
+                    <td><%=itr.next()%></td>
+                    <td><%=itr.next()%></td>
+                    <td><%=itr.next()%></td>
+                    <!--<td><a href="giverole?ID=<%=itr.next()%>"><button class="btn btn-primary">Approve</button></a></td>--><!-- button here -->
+                </tr>
+                    <%}%>
+              </tbody>
+            </table>
+          </div>
           
       <!-- End of Main Content -->
 

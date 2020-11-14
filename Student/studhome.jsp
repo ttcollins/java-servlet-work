@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 
-    <%@page language="java" import="java.util.*"%>
-
 <head>
 
   <meta charset="utf-8">
@@ -37,7 +35,7 @@
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="hodhome">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="studhome">
         <div class="sidebar-brand-icon rotate-n-15">
         </div>
         <div class="sidebar-brand-text mx-3"><h3>Intern</h3></div>
@@ -48,41 +46,29 @@
 
       <!-- Heading -->
       <div class="sidebar-heading">
-        VIEW
+        FILL IN
       </div>
 
       <!-- Nav Item - Dashboard -->
       <li class="nav-item active">
-        <a class="nav-link" href="#">
-          <i class="fas fa-fw fa-table"></i>
-          <span>Student Details</span></a>
+        <a class="nav-link" href="placement">
+          <i class="fas fa-fw fa-folder"></i>
+          <span>Placement Details</span></a>
       </li>
 
       <li class="nav-item active">
-        <a class="nav-link" href="#">
-          <i class="fas fa-fw fa-table"></i>
-          <span>Student Reports</span></a>
-      </li>
-
-      <li class="nav-item active">
-        <a class="nav-link" href="#">
-          <i class="fas fa-fw fa-table"></i>
-          <span>Visited Students</span></a>
-      </li>
-
-      <li class="nav-item active">
-        <a class="nav-link" href="#">
-          <i class="fas fa-fw fa-table"></i>
-          <span>Not Visited Students</span></a>
+        <a class="nav-link" href="studreport.jsp">
+          <i class="fas fa-fw fa-folder"></i>
+          <span>Weekly Reports</span></a>
       </li>
 
       <!-- Divider -->
       <hr class="sidebar-divider">
 
       <li class="nav-item active">
-        <a class="nav-link" href="#">
+        <a class="nav-link" href="visits">
           <i class="fas fa-fw fa-table"></i>
-          <span>Assign Supervisors</span></a>
+          <span>View Visits</span></a>
       </li>
       
       <!-- Divider -->
@@ -148,7 +134,7 @@
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                <a class="dropdown-item" href="updatehod">
+                <a class="dropdown-item" href="updatestudent">
                   <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                   Update Profile
                 </a>
@@ -169,38 +155,80 @@
         <div class="container-fluid">
 
           <!-- Page Heading -->
-          <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Pending Approval</h1>
-          </div>
-    
-          <div class="table-responsive">
-            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-              <tbody>
-                <tr>
-                  <td><b>First Name</b></td>
-                  <td><b>Last Name</b></td>
-                  <td><b>Gender</b></td>
-                  <td><b>Contact</b></td>
-                  <td><b>Email</b></td>
-                  <td><b>Role</b></td>
-                </tr>
-                <%Iterator itr;%>
-                <% List data = (List)request.getAttribute("data");
-                    for(itr=data.iterator(); itr.hasNext();) {%>
-                <tr>
-                    <td><%=itr.next()%></td>
-                    <td><%=itr.next()%></td>
-                    <td><%=itr.next()%></td>
-                    <td><%=itr.next()%></td>
-                    <td><%=itr.next()%></td>
-                    <td><%=itr.next()%></td>
-                    <td><a href="giverole?ID=<%=itr.next()%>"><button class="btn btn-primary">Approve</button></a></td><!-- button here -->
-                </tr>
-                    <%}%>
-              </tbody>
-            </table>
-          </div>
-          
+    <div align="right">
+        <form method="post" action="visits">
+            <div class="form-group"><label for="date" class=" form-control-label"><b>Date of Visit: </b></label><input name="visit_date" value="" type="date" id="visit_date" required class="input100">
+                <button type="submit" class="btn btn-primary" onclick="return validate()">Submit</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Briefing</h1>
+      </div>
+
+    <div class="table-responsive">
+        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+          <tbody>
+            <tr>
+              <td>Placement Details</td>
+              <td><input type="checkbox" <%= session.getAttribute("status") %> class="btn btn-success btn-circle btn-sm"></td>
+              <td>
+                <a href="placement">
+                    <button type="" class="btn btn-primary" >Edit</button>
+                </a>
+              </td>
+            </tr>
+            <tr>
+              <td>Weekly Reports</td>
+              <td><%= session.getAttribute("report_number") %></td>
+              <td>
+                  <a href="reports">
+                    <button type="" class="btn btn-primary">View</button>
+                  </a>
+              </td>
+            </tr>
+            <tr>
+              <td>Confirmed Vists</td>
+              <td><%= session.getAttribute("confirm_number") %></td>
+              <td>
+                <a href="visitconfirm">
+                  <button type="" class="btn btn-primary" >View</button>
+                </a>
+              </td>
+            </tr>
+            <tr>
+                <td>Non-Confirmed Vists</td>
+                <td><%= session.getAttribute("notconfirm_number") %></td>
+                <td>
+                  <a href="visitnotconfirm">
+                    <button type="" class="btn btn-primary" >View</button>
+                  </a>
+                </td>
+              </tr>
+          </tbody>
+        </table>
+      </div>
+
+    <div align="center">
+      <div class="form-group">
+        <a href="letter"><button class="btn btn-primary">Get Internship Letter</button></a><!-- button here -->
+      </div>
+    </div>
+
+
+
+    <script>
+        function validate() {
+            var date = document.getElementById('visit_date').value;
+            var newdate = new Date(date);
+            var now = new Date();
+            if(newdate>now){
+                alert("A Visit Cannot be made in the Future.");
+                return false;
+            }
+        }
+    </script>
       <!-- End of Main Content -->
 
       <!-- Footer -->

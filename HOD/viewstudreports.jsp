@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-  <%@tag description="Student's home page" pageEncoding="UTF-8"%>
+    <%@page language="java" import="java.util.*"%>
 
 <head>
 
@@ -53,9 +53,9 @@
 
       <!-- Nav Item - Dashboard -->
       <li class="nav-item active">
-        <a class="nav-link" href="#">
+        <a class="nav-link" href="viewstuds">
           <i class="fas fa-fw fa-table"></i>
-          <span>Student Details</span></a>
+          <span>Students</span></a>
       </li>
 
       <li class="nav-item active">
@@ -105,8 +105,6 @@
           </button>
 
           <!-- Topbar Navbar -->
-                <div><h6 style="color:green"><%= (request.getAttribute("placementgo") == null) ? "" : request.getAttribute("placementgo") %></h6></div>
-                <div><h6 style="color:red"><%= (request.getAttribute("placementdont") == null) ? "" : request.getAttribute("placementdont") %></h6></div>
                 <div><h6 style="color:green"><%= (request.getAttribute("go") == null) ? "" : request.getAttribute("go") %></h6></div>
                 <div><h6 style="color:red"><%= (request.getAttribute("dont") == null) ? "" : request.getAttribute("dont") %></h6></div>
 
@@ -163,7 +161,38 @@
         <div class="container-fluid">
 
           <!-- Page Heading -->
-          <jsp:doBody/>
+          <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800"><%=request.getAttribute("fname")%>'s Report(s).</h1>
+          </div>
+    
+          <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <tbody>
+                  <tr>
+                    <td><b>Week Ending</b></td>
+                    <td><b>Completed Task</b></td>
+                    <td><b>Task in Progress</b></td>
+                    <td><b>Next Day's Task</b></td>
+                    <td><b>Problems</b></td>
+                    <td><b>Supervisor's Comment</b></td>
+                    <td><b>Score</b></td>
+                  </tr>
+                  <%Iterator itr;%>
+                  <% List data = (List)request.getAttribute("data");
+                      for(itr=data.iterator(); itr.hasNext();) {%>
+                  <tr>
+                      <td><%=itr.next()%></td>
+                      <td><%=itr.next()%></td>
+                      <td><%=itr.next()%></td>
+                      <td><%=itr.next()%></td>
+                      <td><%=itr.next()%></td>
+                      <td><%=itr.next()%></td>
+                      <td><%=itr.next()%></td>
+                  </tr>
+                      <%}%>
+                </tbody>
+              </table>
+          </div>
           
       <!-- End of Main Content -->
 

@@ -1,3 +1,4 @@
+<!--
 <html>
     <body>
         <form method="post" action="register">
@@ -42,21 +43,20 @@
         }
     }
 </script>
+-->
 
-<!--
-    <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!--<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags"%>
-<t:student>
+<t:student>--> 
+    <%@ include file="top.jsp" %>
     <h1>Welcome</h1>
     <div align="right">
         <form method="post" action="visits">
-            <div class="form-group"><label for="date" class=" form-control-label"><b>Date of Visit: </b></label><input name="visit_date" value="" type="date" id="visit_date" required class="input100">
+            <div class="form-group"><label for="date" class=" form-control-label"><b>Date of Visit: <%= session.getAttribute("fname") %></b></label><input name="visit_date" value="" type="date" id="visit_date" required class="input100">
                 <button type="submit" class="btn btn-primary" onclick="return validate()">Submit</button>
             </div>
         </form>
     </div>
-
-
 
     <script>
         function validate() {
@@ -69,5 +69,33 @@
             }
         }
     </script>
-</t:student>
+    <%@ include file="bottom.jsp" %>
+<!--</t:student>-->
+<!--
+    	<servlet>
+        <servlet-name>hello</servlet-name>
+        <servlet-class>examples.hello</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>hello</servlet-name>
+        <url-pattern>/hello</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>helloformurl</servlet-name>
+        <servlet-class>examples.helloformurl</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>helloformurl</servlet-name>
+        <url-pattern>/helloformurl</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>checkbox</servlet-name>
+        <servlet-class>examples.checkbox</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>checkbox</servlet-name>
+        <url-pattern>/checkbox</url-pattern>
+    </servlet-mapping>
 -->

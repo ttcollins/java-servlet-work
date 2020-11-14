@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-
-  <%@tag description="Student's home page" pageEncoding="UTF-8"%>
-
+    <%@ page language="java" import="java.util.*,java.io.*" %> 
 <head>
 
   <meta charset="utf-8">
@@ -53,9 +51,9 @@
 
       <!-- Nav Item - Dashboard -->
       <li class="nav-item active">
-        <a class="nav-link" href="#">
+        <a class="nav-link" href="viewstuds">
           <i class="fas fa-fw fa-table"></i>
-          <span>Student Details</span></a>
+          <span>Students</span></a>
       </li>
 
       <li class="nav-item active">
@@ -163,8 +161,22 @@
         <div class="container-fluid">
 
           <!-- Page Heading -->
-          <jsp:doBody/>
-          
+          <div class="container">
+            <div class="card">
+                <div class="card-header"><strong><h3>STUDENT DETAILS.</h3></strong></div>
+                    <div class="card-body card-block">
+                        <h5>First Name:<b><i> <%=request.getAttribute("fname")%></i></b></h5>
+                        <h5>Other Name:<b><i> <%=request.getAttribute("other")%></i></b></h5>
+                        <h5>Gender:<b><i> <%=request.getAttribute("gender")%></i></b></h5>
+                        <h5>Phone Number:<b><i> <%=request.getAttribute("number")%></i></b></h5>
+                        <h5>E-mail Address:<b><i> <%=request.getAttribute("email")%></i></b></h5>
+                        <% int placement_id = Integer.parseInt(request.getParameter("placement_id")); %>
+                        <a href="viewstudplacement?placement=<%=placement_id%>"><button class="btn btn-primary">Placement Letter</button></a><!-- button here -->
+                        <a href='viewstudreports?user=<%=request.getAttribute("user_id")%>&fname=<%=request.getAttribute("fname")%>'><button class="btn btn-primary">Reports</button></a><!-- button here -->
+                    </div>
+                </div>
+            </div>
+        </div>          
       <!-- End of Main Content -->
 
       <!-- Footer -->

@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 
+    <%@ page language="java" import="java.util.*,java.io.*" %> 
+
 <head>
 
   <meta charset="utf-8">
@@ -51,15 +53,9 @@
 
       <!-- Nav Item - Dashboard -->
       <li class="nav-item active">
-        <a class="nav-link" href="#">
+        <a class="nav-link" href="viewstuds">
           <i class="fas fa-fw fa-table"></i>
-          <span>Student Details</span></a>
-      </li>
-
-      <li class="nav-item active">
-        <a class="nav-link" href="#">
-          <i class="fas fa-fw fa-table"></i>
-          <span>Student Reports</span></a>
+          <span>Students</span></a>
       </li>
 
       <li class="nav-item active">
@@ -169,39 +165,20 @@
           <!-- Page Heading -->
           <div class="container">
             <div class="card">
-                <div class="card-header"><strong><h3>APPROVE USER</h3></strong></div>
+                <div class="card-header"><strong><h3>PLACEMENT LETTER DETAILS.</h3></strong></div>
                     <div class="card-body card-block">
-                        <form method="POST" action="giverole">
-        
-                            <div class="form-group"><label for="fname" class=" form-control-label">First Name</label><input name="fname" type="text" id="fname" value="<%= request.getAttribute("fname") %>" required class="form-control" autofocus></div>
-        
-                            <div class="form-group"><label for="other" class=" form-control-label">Other Name</label><input name="other" value="<%= request.getAttribute("other") %>" type="text" id="other" required class="form-control"></div>
-        
-                            <div class="form-group"><label for="gender" class=" form-control-label">Gender</label>
-                                <select id="gender" type="text" class="form-control" name="gender" value="" required autocomplete="gender">
-                                    <option value="<%= request.getAttribute("gender") %>"><%= request.getAttribute("gender") %></option>
-                                    <option value="M">Male</option>
-                                    <option value="F">Female</option>
-                                </select>
-                            </div>
+                        <h5>Field Supervisor E-mail Address: <b><i><%=request.getAttribute("field_email")%></i></b></h5>
+                        <h5>Field Supervisor First Name: <b><i><%=request.getAttribute("field_fname")%></i></b></h5>
+                        <h5>Field Supervisor Other Name: <b><i><%=request.getAttribute("field_other")%></i></b></h5>
+                        <h5>Field Supervisor Phone Number: <b><i><%=request.getAttribute("field_number")%></i></b></h5>
+                        <h5>Internship Start Date: <b><i><%=request.getAttribute("start_date")%></i></b></h5>
+                        <h5>Internship End Date: <b><i></i><%=request.getAttribute("end_date")%></b></h5>
 
-                            <div class="form-group"><label for="number" class=" form-control-label">Phone Number</label><input name="number" type="text" id="number" value="<%= request.getAttribute("number") %>" required class="form-control"></div>
-
-                            <div class="form-group"><label for="email" class=" form-control-label">E-Mail Address</label><input name="email" type="email" id="email" value="<%= request.getAttribute("email") %>" required class="form-control"></div>
-
-                            <div class="form-group"><label for="role" class=" form-control-label">Assigned Role</label>
-                                <select id="role" type="text" class="form-control" name="role" value="" required autocomplete="role">
-                                    <option value="<%= request.getAttribute("role") %>"><%= request.getAttribute("role") %></option>
-                                    <option value="2">Supervisor</option>
-                                    <option value="3">Student</option>
-                                </select>
-                            </div>
-                            
-                            <input name="ID" type="hidden" value="<%= request.getAttribute("user_id") %>" >
-
-                            <button type="submit" class="btn btn-primary">Submit</button>
-                            <button type="reset" class="btn btn-primary">Refresh</button>
-                        </form>
+                        <h5>Organisation Name: <b><i><%=request.getAttribute("org_name")%></i></b></h5>
+                        <h5>Organisation Address: <b><i><%=request.getAttribute("org_address")%></i></b></h5>
+                        <h5>Additional Address Information: <b><i><%=request.getAttribute("additional_address_info")%></i></b></h5>
+                        <h5>Organisation Contact: <b><i><%=request.getAttribute("org_contact")%></i></b></h5>
+                        <h5>Organisation E-mail Address: <b><i><%=request.getAttribute("org_email")%></i></b></h5>
                     </div>
                 </div>
             </div>
