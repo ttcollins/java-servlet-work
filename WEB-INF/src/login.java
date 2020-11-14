@@ -1,11 +1,9 @@
-package examples;
+package NAD;
 import java.io.*;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import java.sql.*;
-import javax.servlet.annotation.WebServlet;
 
-@WebServlet("/login")
 public class login extends HttpServlet{
     public boolean check(String email, String pass, HttpServletRequest request, HttpServletResponse response) {
         // 2. Define the Connection URL
@@ -44,7 +42,7 @@ public class login extends HttpServlet{
             response.sendRedirect("studhome");
          }else if(role==sup){
             session.setAttribute("email", email);
-            response.sendRedirect("suphome.jsp");
+            response.sendRedirect("suphome");
          }else if(role==hod){
             session.setAttribute("email", email);
             response.sendRedirect("hodhome");

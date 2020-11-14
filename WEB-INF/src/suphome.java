@@ -4,18 +4,15 @@ import java.util.*;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import java.sql.*;
-import javax.servlet.annotation.WebServlet;
 
-@WebServlet("/visitconfirm")
-public class visitconfirm extends HttpServlet{
-    public boolean fetch(int user_id, HttpServletRequest request, HttpServletResponse response){
+public class suphome extends HttpServlet{
+    public boolean fetchstudents(int sup_id, HttpServletRequest request, HttpServletResponse response){
         // 2. Define the Connection URL
         String url = "jdbc:mysql://localhost/NAD";
       
         String dbUsername = "root";
         String dbPassword = "";
-        String confirm = "YES";
-        String query = "select * from visits where stud_id='" + user_id + "' and supervisor_confirm='"+confirm+"'";
+        String query = "select * from student where supervisor_id='" + sup_id + "'";
       try {
         //1. Loading the JDBC driver
         Class.forName("com.mysql.jdbc.Driver");
@@ -29,19 +26,31 @@ public class visitconfirm extends HttpServlet{
         // 5. Execute a Query
         ResultSet rs = st.executeQuery(query);
         List dataList = new ArrayList();
-        
         // 6. Process the results
         while (rs.next()) {
          // 7. Close all connections
-         dataList.add(rs.getString("stud_date"));
-         dataList.add(rs.getString("supervisor_confirm"));
+         int stud_id = rs.getInt("user_id");
+         dataList.add(rs.getString("reg_number"));
+         dataList.add(rs.getString("std_number"));
+         dataList.add(rs.getString("course"));
+         /*String query1 = "select * from users where ID='"+ stud_id +"'";
+         ResultSet rs1 = st.executeQuery(query1);
+         while (rs1.next()) {
+            dataList.add(rs.getString("reg_number"));
+            dataList.add(rs1.getString("fname"));
+            dataList.add(rs1.getString("other"));
+            dataList.add(rs1.getString("gender"));
+            dataList.add(rs1.getString("number"));
+            dataList.add(rs1.getInt("email"));
+            dataList.add(rs1.getInt("course"));
+         }*/
         }
         
         // 7. Close all connections
         st.close();
         con.close();
         request.setAttribute("data", dataList);
-        request.getRequestDispatcher("Student/viewvisitconfirm.jsp").forward(request, response);
+        request.getRequestDispatcher("Supervisor/suphome.jsp").forward(request, response);
       }
        catch (SQLException e) {
         System.out.println(e.toString());
@@ -54,14 +63,15 @@ public class visitconfirm extends HttpServlet{
     public void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException{
         HttpSession session = request.getSession();
-        int user_id = (int)session.getAttribute("ID");
+        int sup_id = (int)session.getAttribute("ID");
         String go = "Your details have been saved";
         String dont = "Something went wrong, Data failed to display!";
 
-        if(!fetch(user_id, request, response)){
+        if(!fetchstudents(sup_id, request, response)){
             request.setAttribute("dont", dont);
-            request.getRequestDispatcher("Student/studhome.jsp").forward(request, response);
+            request.getRequestDispatcher("Supervisor/suphome.jsp").forward(request, response);
         }
+
     }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response)

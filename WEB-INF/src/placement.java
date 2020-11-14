@@ -1,11 +1,9 @@
-package examples;
+package NAD;
 import java.io.*;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import java.sql.*;
-import javax.servlet.annotation.WebServlet;
 
-@WebServlet("/placement")
 public class placement extends HttpServlet{
     public boolean fill(String field_email, String field_fname, String field_other, String field_number, int user_id, String start_date, String end_date, String org_name, String org_address, String additional_address_info, String org_contact, String org_email){
         // 2. Define the Connection URL
@@ -101,14 +99,14 @@ public class placement extends HttpServlet{
          request.setAttribute("additional_address_info", additional_address_info);
          request.setAttribute("org_contact", org_contact);
          request.setAttribute("org_email", org_email);
-         request.getRequestDispatcher("studplacementedit.jsp").forward(request, response);
+         request.getRequestDispatcher("Student/studplacementedit.jsp").forward(request, response);
 
          rs.close();
          st.close();
          con.close();
          return true;
         }else{
-            response.sendRedirect("studplacement.jsp");
+            response.sendRedirect("Student/studplacement.jsp");
         }        
         // 7. Close all connections
         rs.close();
@@ -152,10 +150,10 @@ public class placement extends HttpServlet{
 
         if(fill(field_email, field_fname, field_other, field_number, user_id, start_date, end_date, org_name, org_address, additional_address_info, org_contact, org_email)){
             request.setAttribute("placementgo", placementgo);
-            request.getRequestDispatcher("studhome.jsp").forward(request, response);
+            request.getRequestDispatcher("studhome").forward(request, response);
         }else{
             request.setAttribute("placementdont", placementdont);
-            request.getRequestDispatcher("studplacement.jsp").forward(request, response);
+            request.getRequestDispatcher("Student/studplacement.jsp").forward(request, response);
         }
     }
 }

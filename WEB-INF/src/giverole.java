@@ -1,11 +1,9 @@
-package examples;
+package NAD;
 import java.io.*;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import java.sql.*;
-import javax.servlet.annotation.WebServlet;
 
-@WebServlet("/giverole")
 public class giverole extends HttpServlet{
     public boolean fetch(int ID, HttpServletRequest request, HttpServletResponse response){
         // 2. Define the Connection URL
@@ -44,7 +42,7 @@ public class giverole extends HttpServlet{
             request.setAttribute("email", email);
             request.setAttribute("role", role);
             request.setAttribute("user_id", user_id);
-            request.getRequestDispatcher("giverole.jsp").forward(request, response);
+            request.getRequestDispatcher("HOD/giverole.jsp").forward(request, response);
             // 7. Close all connections
             st.close();
             con.close();

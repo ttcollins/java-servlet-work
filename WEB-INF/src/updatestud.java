@@ -1,11 +1,9 @@
-package examples;
+package NAD;
 import java.io.*;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import java.sql.*;
-import javax.servlet.annotation.WebServlet;
 
-@WebServlet("/updatestud")
 public class updatestud extends HttpServlet{
     public boolean update(String fname, String other, String std_number, String reg_number, String course, String gender, String number, String email, String password, int user_id){
         // 2. Define the Connection URL
@@ -70,10 +68,10 @@ public class updatestud extends HttpServlet{
             session.setAttribute("email", email);
             session.setAttribute("fname", fname);
             request.setAttribute("go", go);
-            request.getRequestDispatcher("updatestudent").forward(request, response);
+            request.getRequestDispatcher("Student/updatestudent").forward(request, response);
         }else{
             request.setAttribute("dont", dont);
-            request.getRequestDispatcher("updatestud.jsp").forward(request, response);
+            request.getRequestDispatcher("Student/updatestud.jsp").forward(request, response);
         }
     }
 

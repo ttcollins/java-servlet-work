@@ -1,12 +1,10 @@
-package examples;
+package NAD;
 import java.io.*;
 import java.util.*;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import java.sql.*;
-import javax.servlet.annotation.WebServlet;
 
-@WebServlet("/hodhome")
 public class hodhome extends HttpServlet{
     public boolean fetchsups(HttpServletRequest request, HttpServletResponse response){
         // 2. Define the Connection URL
@@ -45,7 +43,7 @@ public class hodhome extends HttpServlet{
         st.close();
         con.close();
         request.setAttribute("data", dataList);
-        request.getRequestDispatcher("hodhome.jsp").forward(request, response);
+        request.getRequestDispatcher("HOD/hodhome.jsp").forward(request, response);
       }
        catch (SQLException e) {
         System.out.println(e.toString());
@@ -63,7 +61,7 @@ public class hodhome extends HttpServlet{
 
         if(!fetchsups(request, response)){
             request.setAttribute("dont", dont);
-            request.getRequestDispatcher("hodhome.jsp").forward(request, response);
+            request.getRequestDispatcher("hodhome").forward(request, response);
         }
 
     }

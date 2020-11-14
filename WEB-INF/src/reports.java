@@ -1,12 +1,10 @@
-package examples;
+package NAD;
 import java.io.*;
 import java.util.*;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import java.sql.*;
-import javax.servlet.annotation.WebServlet;
 
-@WebServlet("/reports")
 public class reports extends HttpServlet{
     public boolean fetch(int user_id, HttpServletRequest request, HttpServletResponse response){
         // 2. Define the Connection URL
@@ -45,7 +43,7 @@ public class reports extends HttpServlet{
         st.close();
         con.close();
         request.setAttribute("data", dataList);
-        request.getRequestDispatcher("viewreports.jsp").forward(request, response);
+        request.getRequestDispatcher("Student/viewreports.jsp").forward(request, response);
       }
        catch (SQLException e) {
         System.out.println(e.toString());
@@ -64,7 +62,7 @@ public class reports extends HttpServlet{
 
         if(!fetch(user_id, request, response)){
             request.setAttribute("dont", dont);
-            request.getRequestDispatcher("studhome.jsp").forward(request, response);
+            request.getRequestDispatcher("Student/studhome.jsp").forward(request, response);
         }
     }
 

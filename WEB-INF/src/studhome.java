@@ -1,11 +1,9 @@
-package examples;
+package NAD;
 import java.io.*;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import java.sql.*;
-import javax.servlet.annotation.WebServlet;
 
-@WebServlet("/studhome")
 public class studhome extends HttpServlet{
     public boolean fetchplacement(int user_id, HttpServletRequest request, HttpServletResponse response){
         // 2. Define the Connection URL
@@ -210,13 +208,13 @@ public class studhome extends HttpServlet{
 
         if(fetchplacement(user_id, request, response)&&fetchreports(user_id, request, response)&&fetchconfirmed(user_id, request, response)&&fetchnotconfirmed(user_id, request, response)){
             request.setAttribute("go", go);
-            request.getRequestDispatcher("studhome.jsp").forward(request, response);
+            request.getRequestDispatcher("Student/studhome.jsp").forward(request, response);
         }else if(fetchplacement(user_id, request, response)||fetchreports(user_id, request, response)||fetchconfirmed(user_id, request, response)||fetchnotconfirmed(user_id, request, response)){
             request.setAttribute("go", go);
-            request.getRequestDispatcher("studhome.jsp").forward(request, response);
+            request.getRequestDispatcher("Student/studhome.jsp").forward(request, response);
         }else{
             request.setAttribute("dont", dont);
-            request.getRequestDispatcher("studhome.jsp").forward(request, response);
+            request.getRequestDispatcher("Student/studhome.jsp").forward(request, response);
         }
 
     }

@@ -1,4 +1,4 @@
-package examples;
+package NAD;
 import java.io.*;
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -62,10 +62,10 @@ public class studreport extends HttpServlet{
 
         if(fill(date, task_completed, task_in_progress, next_day_tasks, problems, user_id, request, response)){
             request.setAttribute("go", go);
-            request.getRequestDispatcher("studhome.jsp").forward(request, response);
+            request.getRequestDispatcher("Student/studhome.jsp").forward(request, response);
         }else{
             request.setAttribute("dont", dont);
-            request.getRequestDispatcher("studreprot.jsp").forward(request, response);
+            request.getRequestDispatcher("Student/studreprot.jsp").forward(request, response);
         }
     }
 

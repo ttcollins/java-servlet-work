@@ -1,11 +1,9 @@
-package examples;
+package NAD;
 import java.io.*;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import java.sql.*;
-import javax.servlet.annotation.WebServlet;
 
-@WebServlet("/updatehod")
 public class updatehod extends HttpServlet{
     public boolean fetch(String email, HttpServletRequest request, HttpServletResponse response){
         // 2. Define the Connection URL
@@ -38,7 +36,7 @@ public class updatehod extends HttpServlet{
             request.setAttribute("other", other);
             request.setAttribute("gender", gender);
             request.setAttribute("number", number);
-            request.getRequestDispatcher("updatehod.jsp").forward(request, response);
+            request.getRequestDispatcher("HOD/updatehod.jsp").forward(request, response);
             // 7. Close all connections
             st.close();
             con.close();

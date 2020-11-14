@@ -1,11 +1,9 @@
-package examples;
+package NAD;
 import java.io.*;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import java.sql.*;
-import javax.servlet.annotation.WebServlet;
 
-@WebServlet("/register")
 public class register extends HttpServlet{
     public boolean registernormal(String fname, String other, String gender, String number, String email, String password) {
         // 2. Define the Connection URL

@@ -1,10 +1,8 @@
-package examples;
+package NAD;
 import java.io.*;
 import javax.servlet.*;
 import javax.servlet.http.*;
-import javax.servlet.annotation.WebServlet;
 
-@WebServlet("/logout")
 public class logout extends HttpServlet{
     public void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException{

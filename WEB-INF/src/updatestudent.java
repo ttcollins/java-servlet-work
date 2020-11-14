@@ -1,4 +1,4 @@
-package examples;
+package NAD;
 import java.io.*;
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -49,7 +49,7 @@ public class updatestudent extends HttpServlet{
             request.setAttribute("other", other);
             request.setAttribute("gender", gender);
             request.setAttribute("number", number);
-            request.getRequestDispatcher("updatestud.jsp").forward(request, response);
+            request.getRequestDispatcher("Student/updatestud.jsp").forward(request, response);
             // 7. Close all connections
             st.close();
             con.close();
