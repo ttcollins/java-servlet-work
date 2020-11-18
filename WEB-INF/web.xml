@@ -103,6 +103,15 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>updatesup</servlet-name>
+        <servlet-class>NAD.updatesup</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>updatesup</servlet-name>
+        <url-pattern>/updatesup</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>visits</servlet-name>
         <servlet-class>NAD.visits</servlet-class>
     </servlet>
@@ -127,5 +136,104 @@
     <servlet-mapping>
         <servlet-name>Internship_letter</servlet-name>
         <url-pattern>/letter</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>viewvisitedstuds</servlet-name>
+        <servlet-class>NAD.viewvisitedstuds</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>viewvisitedstuds</servlet-name>
+        <url-pattern>/viewvisitedstuds</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>viewnotvisitedstuds</servlet-name>
+        <servlet-class>NAD.viewnotvisitedstuds</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>viewnotvisitedstuds</servlet-name>
+        <url-pattern>/viewnotvisitedstuds</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>viewvisitdetails</servlet-name>
+        <servlet-class>NAD.viewvisitdetails</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>viewvisitdetails</servlet-name>
+        <url-pattern>/viewvisitdetails</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>reviewreport</servlet-name>
+        <servlet-class>NAD.reviewreport</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>reviewreport</servlet-name>
+        <url-pattern>/reviewreport</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>reviewedreports</servlet-name>
+        <servlet-class>NAD.reviewedreports</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>reviewedreports</servlet-name>
+        <url-pattern>/reviewedreports</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>nonreviewedreports</servlet-name>
+        <servlet-class>NAD.nonreviewedreports</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>nonreviewedreports</servlet-name>
+        <url-pattern>/nonreviewedreports</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>visitedstuds</servlet-name>
+        <servlet-class>NAD.visitedstuds</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>visitedstuds</servlet-name>
+        <url-pattern>/visitedstuds</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>notvisitedstuds</servlet-name>
+        <servlet-class>NAD.notvisitedstuds</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>notvisitedstuds</servlet-name>
+        <url-pattern>/notvisitedstuds</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>visitdetails</servlet-name>
+        <servlet-class>NAD.visitdetails</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>visitdetails</servlet-name>
+        <url-pattern>/visitdetails</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>confirmedvisits</servlet-name>
+        <servlet-class>NAD.confirmedvisits</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>confirmedvisits</servlet-name>
+        <url-pattern>/confirmedvisits</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>unconfirmedvisits</servlet-name>
+        <servlet-class>NAD.unconfirmedvisits</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>unconfirmedvisits</servlet-name>
+        <url-pattern>/unconfirmedvisits</url-pattern>
     </servlet-mapping>
 </web-app>

@@ -57,13 +57,13 @@
       </li>
 
       <li class="nav-item active">
-        <a class="nav-link" href="#">
+        <a class="nav-link" href="viewvisitedstuds">
           <i class="fas fa-fw fa-table"></i>
           <span>Visited Students</span></a>
       </li>
 
       <li class="nav-item active">
-        <a class="nav-link" href="#">
+        <a class="nav-link" href="viewnotvisitedstuds">
           <i class="fas fa-fw fa-table"></i>
           <span>Not Visited Students</span></a>
       </li>
@@ -74,7 +74,7 @@
       <li class="nav-item active">
         <a class="nav-link" href="#">
           <i class="fas fa-fw fa-table"></i>
-          <span>Assign Supervisors</span></a>
+          <span>Re-assign Supervisors</span></a>
       </li>
       
       <!-- Divider -->

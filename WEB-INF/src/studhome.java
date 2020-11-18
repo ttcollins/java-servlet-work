@@ -12,45 +12,45 @@ public class studhome extends HttpServlet{
         String dbUsername = "root";
         String dbPassword = "";
         String query = "select * from placement where user_id='" + user_id + "'";
-      try {
-        //1. Loading the JDBC driver
-        Class.forName("com.mysql.jdbc.Driver");
+        try {
+            //1. Loading the JDBC driver
+            Class.forName("com.mysql.jdbc.Driver");
 
-        // 3. Establish the connection
-        Connection con = DriverManager.getConnection(url, dbUsername, dbPassword);
+            // 3. Establish the connection
+            Connection con = DriverManager.getConnection(url, dbUsername, dbPassword);
         
-        // 4. Create a statement
-        Statement st = con.createStatement();
+            // 4. Create a statement
+            Statement st = con.createStatement();
         
-        // 5. Execute a Query
-        ResultSet result = st.executeQuery(query);
-        HttpSession session = request.getSession();
+            // 5. Execute a Query
+            ResultSet result = st.executeQuery(query);
+            HttpSession session = request.getSession();
 
-        // 6. Process the results
-        if (result.next()) {
-            String check = "checked";
-            session.setAttribute("status", check);
+            // 6. Process the results
+            if (result.next()) {
+                String check = "checked";
+                session.setAttribute("status", check);
 
-            // 7. Close all connections
-            st.close();
-            con.close();
-            return true;
-        }else{
-            String check = "";
-            session.setAttribute("status", check);
-            // 7. Close all connections
-            st.close();
-            con.close();
-            return true;
+                // 7. Close all connections
+                st.close();
+                con.close();
+                return true;
+            }else{
+                String check = "";
+                session.setAttribute("status", check);
+                // 7. Close all connections
+                st.close();
+                con.close();
+                return true;
+            }
+
         }
-
-       }
-       catch (SQLException e) {
-        System.out.println(e.toString());
-       } catch (Exception e) {
-        System.out.println(e.toString());
-       }
-       return false;
+        catch (SQLException e) {
+            System.out.println(e.toString());
+        } catch (Exception e) {
+            System.out.println(e.toString());
+        }
+        return false;
     }
 
     public boolean fetchreports(int user_id, HttpServletRequest request, HttpServletResponse response){
@@ -199,12 +199,110 @@ public class studhome extends HttpServlet{
        return false;
     }
 
+    public boolean assignsup(HttpServletRequest request, HttpServletResponse response){
+        // 2. Define the Connection URL
+        String url = "jdbc:mysql://localhost/NAD";
+      
+        String dbUsername = "root";
+        String dbPassword = "";
+        String query = "select * from supervisor order by rand() limit 1";
+        try {
+        //1. Loading the JDBC driver
+        Class.forName("com.mysql.jdbc.Driver");
+
+        // 3. Establish the connection
+        Connection con = DriverManager.getConnection(url, dbUsername, dbPassword);
+        
+        // 4. Create a statement
+        Statement st = con.createStatement();
+        
+        // 5. Execute a Query
+        ResultSet result = st.executeQuery(query);
+
+        // 6. Process the results
+        if (result.next()) {
+            int supervisor_id = result.getInt("user_id");
+            int stud_number = result.getInt("number_of_students");
+            HttpSession session = request.getSession();
+            session.setAttribute("supervisor_id", supervisor_id);
+            String query1 = "update student set supervisor_id='"+ supervisor_id +"' where supervisor_id is null";
+            int rs = st.executeUpdate(query1);
+            stud_number = stud_number+1;
+            String query2 = "update supervisor set number_of_students='"+ stud_number +"' where user_id='"+ supervisor_id +"'";
+            int rs1 = st.executeUpdate(query2);
+            st.close();
+            con.close();
+            return true;
+            // 7. Close all connections
+        }
+
+       }
+       catch (SQLException e) {
+        System.out.println(e.toString());
+       } catch (Exception e) {
+        System.out.println(e.toString());
+       }
+       return false;
+    }
+
+    public boolean fetchsup(HttpServletRequest request, HttpServletResponse response){
+        // 2. Define the Connection URL
+        String url = "jdbc:mysql://localhost/NAD";
+      
+        String dbUsername = "root";
+        String dbPassword = "";
+        HttpSession session = request.getSession();
+        int supervisor_id = (int)session.getAttribute("supervisor_id");
+        String query = "select * from users where id='"+supervisor_id+"'";
+        try {
+        //1. Loading the JDBC driver
+        Class.forName("com.mysql.jdbc.Driver");
+
+        // 3. Establish the connection
+        Connection con = DriverManager.getConnection(url, dbUsername, dbPassword);
+        
+        // 4. Create a statement
+        Statement st = con.createStatement();
+        
+        // 5. Execute a Query
+        ResultSet result = st.executeQuery(query);
+
+        // 6. Process the results
+        if (result.next()) {
+            String sup_fname = result.getString("fname");
+            String sup_other = result.getString("other");
+            String sup_gender = result.getString("gender");
+            String sup_number = result.getString("number");
+            String sup_email = result.getString("email");
+            session.setAttribute("sup_fname", sup_fname);
+            session.setAttribute("sup_other", sup_other);
+            session.setAttribute("sup_gender", sup_gender);
+            session.setAttribute("sup_number", sup_number);
+            session.setAttribute("sup_email", sup_email);
+            st.close();
+            con.close();
+            return true;
+            // 7. Close all connections
+        }
+
+       }
+       catch (SQLException e) {
+        System.out.println(e.toString());
+       } catch (Exception e) {
+        System.out.println(e.toString());
+       }
+       return false;
+    }
+
     public void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException{
         HttpSession session = request.getSession();
         int user_id = (int)session.getAttribute("ID");
         String go = "Welcome!";
         String dont = "Something went wrong during fetching of data";
+
+        assignsup(request, response);
+        fetchsup(request, response);
 
         if(fetchplacement(user_id, request, response)&&fetchreports(user_id, request, response)&&fetchconfirmed(user_id, request, response)&&fetchnotconfirmed(user_id, request, response)){
             request.setAttribute("go", go);

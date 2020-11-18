@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Login V14</title>
+    <title>Register</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--===============================================================================================-->
@@ -86,7 +86,7 @@
                         </div>
 
                         <span class="txt1 p-b-11">
-                            Cours
+                            Course
                         </span>
                         <div class="wrap-input100 m-b-36">
                             <select id="course" type="text" class="input100" name="course" autocomplete="course" autofocus>

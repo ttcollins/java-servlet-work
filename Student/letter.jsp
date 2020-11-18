@@ -57,7 +57,7 @@
 </head>
 <body bgcolor="black">
 
-	<div id="letterBody">
+	<div id="letterBody" onclick="window.print()">
 	<div class="middle"> <%= request.getAttribute("fname") %> </div>
 
 	<div id="address">

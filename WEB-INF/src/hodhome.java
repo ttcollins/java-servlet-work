@@ -13,44 +13,43 @@ public class hodhome extends HttpServlet{
         String dbUsername = "root";
         String dbPassword = "";
         String query = "select * from users where role is null";
-      try {
-        //1. Loading the JDBC driver
-        Class.forName("com.mysql.jdbc.Driver");
+        try {
+            //1. Loading the JDBC driver
+            Class.forName("com.mysql.jdbc.Driver");
 
-        // 3. Establish the connection
-        Connection con = DriverManager.getConnection(url, dbUsername, dbPassword);
+            // 3. Establish the connection
+            Connection con = DriverManager.getConnection(url, dbUsername, dbPassword);
         
-        // 4. Create a statement
-        Statement st = con.createStatement();
+            // 4. Create a statement
+            Statement st = con.createStatement();
         
-        // 5. Execute a Query
-        ResultSet rs = st.executeQuery(query);
-        List dataList = new ArrayList();
+            // 5. Execute a Query
+            ResultSet rs = st.executeQuery(query);
+            List dataList = new ArrayList();
         
-        // 6. Process the results
-        while (rs.next()) {
-         // 7. Close all connections
-         dataList.add(rs.getString("fname"));
-         dataList.add(rs.getString("other"));
-         dataList.add(rs.getString("gender"));
-         dataList.add(rs.getString("number"));
-         dataList.add(rs.getString("email"));
-         dataList.add(rs.getInt("role"));
-         dataList.add(rs.getInt("ID"));
+            // 6. Process the results
+            while (rs.next()) {
+                dataList.add(rs.getString("fname"));
+                dataList.add(rs.getString("other"));
+                dataList.add(rs.getString("gender"));
+                dataList.add(rs.getString("number"));
+                dataList.add(rs.getString("email"));
+                dataList.add(rs.getInt("role"));
+                dataList.add(rs.getInt("ID"));
+            }
+        
+            // 7. Close all connections
+            st.close();
+            con.close();
+            request.setAttribute("data", dataList);
+            request.getRequestDispatcher("HOD/hodhome.jsp").forward(request, response);
         }
-        
-        // 7. Close all connections
-        st.close();
-        con.close();
-        request.setAttribute("data", dataList);
-        request.getRequestDispatcher("HOD/hodhome.jsp").forward(request, response);
-      }
-       catch (SQLException e) {
-        System.out.println(e.toString());
-       } catch (Exception e) {
-        System.out.println(e.toString());
-       }
-       return false;
+        catch (SQLException e) {
+            System.out.println(e.toString());
+        } catch (Exception e) {
+            System.out.println(e.toString());
+        }
+        return false;
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response)

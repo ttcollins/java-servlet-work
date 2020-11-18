@@ -6,13 +6,13 @@ import javax.servlet.http.*;
 import java.sql.*;
 
 public class visits extends HttpServlet{
-    public boolean fill(String date, int user_id){
+    public boolean fill(String date, int user_id, int sup_id){
         // 2. Define the Connection URL
         String url = "jdbc:mysql://localhost/NAD";
-      
+        
         String dbUsername = "root";
         String dbPassword = "";
-        String query = "insert into visits (stud_id, stud_date) VALUES('"+user_id+"', '"+date+"')";
+        String query = "insert into visits (stud_id, stud_date, supervisor_id) VALUES('"+user_id+"', '"+date+"', '"+sup_id+"')";
         String query1 = "update student set visited='1' where user_id='"+ user_id +"'";
       try {
         //1. Loading the JDBC driver
@@ -109,10 +109,11 @@ public class visits extends HttpServlet{
         HttpSession session = request.getSession();
         String date = request.getParameter("visit_date");
         int user_id = (int)session.getAttribute("ID");
+        int sup_id = (int)session.getAttribute("supervisor_id");
         String go = "Your details have been saved";
         String dont = "Something went wrong, Please try again!";
 
-        if(fill(date, user_id)){
+        if(fill(date, user_id, sup_id)){
             request.setAttribute("go", go);
             request.getRequestDispatcher("Student/studhome.jsp").forward(request, response);
         }else{

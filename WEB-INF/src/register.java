@@ -12,38 +12,38 @@ public class register extends HttpServlet{
         String dbUsername = "root";
         String dbPassword = "";
         String query = "insert into users (fname, other, gender, number, email, password) VALUES('"+fname+"', '"+other+"', '"+gender+"', '"+number+"', '"+email+"', '"+password+"')";
-      try {
-        //1. Loading the JDBC driver
-        Class.forName("com.mysql.jdbc.Driver");
+        try {
+            //1. Loading the JDBC driver
+            Class.forName("com.mysql.jdbc.Driver");
 
-        // 3. Establish the connection
-        Connection con = DriverManager.getConnection(url, dbUsername, dbPassword);
+            // 3. Establish the connection
+            Connection con = DriverManager.getConnection(url, dbUsername, dbPassword);
         
-        // 4. Create a statement
-        Statement st = con.createStatement();
+            // 4. Create a statement
+            Statement st = con.createStatement();
         
-        // 5. Execute a Query
-        int rs = st.executeUpdate(query);
+            // 5. Execute a Query
+            int rs = st.executeUpdate(query);
         
-        // 6. Process the results
-        if (rs!=0) {
-         // 7. Close all connections
-         st.close();
-         con.close();
-         return true;
+            // 6. Process the results
+            if (rs!=0) {
+                // 7. Close all connections
+                st.close();
+                con.close();
+                return true;
+            }
+        
+            // 7. Close all connections
+            st.close();
+            con.close();
+            return false;
         }
-        
-        // 7. Close all connections
-        st.close();
-        con.close();
+        catch (SQLException e) {
+            System.out.println(e.toString());
+        } catch (Exception e) {
+            System.out.println(e.toString());
+        }
         return false;
-       }
-       catch (SQLException e) {
-        System.out.println(e.toString());
-       } catch (Exception e) {
-        System.out.println(e.toString());
-       }
-       return false;
     }
 
     public boolean registerstud(String fname, String other, int role, String std_number, String reg_number, String course, String gender, String number, String email, String password){
@@ -54,44 +54,44 @@ public class register extends HttpServlet{
         String dbPassword = "";
         String query = "insert into users (fname, other, role, gender, number, email, password) VALUES('"+fname+"', '"+other+"', '"+role+"', '"+gender+"', '"+number+"', '"+email+"', '"+password+"')";
         String query1 = "select * from users where email='" + email + "' and password='" + password + "'";
-      try {
-        //1. Loading the JDBC driver
-        Class.forName("com.mysql.jdbc.Driver");
+        try {
+            //1. Loading the JDBC driver
+            Class.forName("com.mysql.jdbc.Driver");
 
-        // 3. Establish the connection
-        Connection con = DriverManager.getConnection(url, dbUsername, dbPassword);
+            // 3. Establish the connection
+            Connection con = DriverManager.getConnection(url, dbUsername, dbPassword);
         
-        // 4. Create a statement
-        Statement st = con.createStatement();
+            // 4. Create a statement
+            Statement st = con.createStatement();
         
-        // 5. Execute a Query
-        int rs = st.executeUpdate(query);
-        ResultSet result = st.executeQuery(query1);
-        if(result.next()){
-            int user_id = result.getInt("ID");
-            String query2 = "insert into student (std_number, reg_number, course, user_id) VALUES('"+std_number+"', '"+reg_number+"', '"+course+"', '"+user_id+"')";
-            int resultant = st.executeUpdate(query2);
+            // 5. Execute a Query
+            int rs = st.executeUpdate(query);
+            ResultSet result = st.executeQuery(query1);
+            if(result.next()){
+                int user_id = result.getInt("ID");
+                String query2 = "insert into student (std_number, reg_number, course, user_id) VALUES('"+std_number+"', '"+reg_number+"', '"+course+"', '"+user_id+"')";
+                int resultant = st.executeUpdate(query2);
+            }
+        
+            // 6. Process the results
+            if (rs!=0) {
+                // 7. Close all connections
+                st.close();
+                con.close();
+                return true;
+            }
+        
+            // 7. Close all connections
+            st.close();
+            con.close();
+            return false;
         }
-        
-        // 6. Process the results
-        if (rs!=0) {
-         // 7. Close all connections
-         st.close();
-         con.close();
-         return true;
+        catch (SQLException e) {
+            System.out.println(e.toString());
+        } catch (Exception e) {
+            System.out.println(e.toString());
         }
-        
-        // 7. Close all connections
-        st.close();
-        con.close();
         return false;
-       }
-       catch (SQLException e) {
-        System.out.println(e.toString());
-       } catch (Exception e) {
-        System.out.println(e.toString());
-       }
-       return false;
     }
     
 

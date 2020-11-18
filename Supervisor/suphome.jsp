@@ -37,7 +37,7 @@
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="hodhome">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="suphome">
         <div class="sidebar-brand-icon rotate-n-15">
         </div>
         <div class="sidebar-brand-text mx-3"><h3>Intern</h3></div>
@@ -53,19 +53,25 @@
 
       <!-- Nav Item - Dashboard -->
       <li class="nav-item active">
-        <a class="nav-link" href="#">
+        <a class="nav-link" href="reviewedreports">
           <i class="fas fa-fw fa-table"></i>
-          <span>Student Details</span></a>
+          <span>Reviewed Reports</span></a>
       </li>
 
       <li class="nav-item active">
-        <a class="nav-link" href="#">
+        <a class="nav-link" href="nonreviewedreports">
+          <i class="fas fa-fw fa-table"></i>
+          <span>Non-reviewed Reports</span></a>
+      </li>
+
+      <li class="nav-item active">
+        <a class="nav-link" href="visitedstuds">
           <i class="fas fa-fw fa-table"></i>
           <span>Visited Students</span></a>
       </li>
 
       <li class="nav-item active">
-        <a class="nav-link" href="#">
+        <a class="nav-link" href="notvisitedstuds">
           <i class="fas fa-fw fa-table"></i>
           <span>Not Visited Students</span></a>
       </li>
@@ -74,9 +80,15 @@
       <hr class="sidebar-divider">
 
       <li class="nav-item active">
-        <a class="nav-link" href="#">
+        <a class="nav-link" href="confirmedvisits">
           <i class="fas fa-fw fa-table"></i>
-          <span>Assign Supervisors</span></a>
+          <span>Confirmed Visits</span></a>
+      </li>
+
+      <li class="nav-item active">
+        <a class="nav-link" href="unconfirmedvisits">
+          <i class="fas fa-fw fa-table"></i>
+          <span>Unconfirmed Visits</span></a>
       </li>
       
       <!-- Divider -->
@@ -142,7 +154,7 @@
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                <a class="dropdown-item" href="updatehod">
+                <a class="dropdown-item" href="updatesup">
                   <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                   Update Profile
                 </a>
@@ -164,19 +176,16 @@
 
           <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Pending Approval</h1>
+            <h1 class="h3 mb-0 text-gray-800">Your Students</h1>
           </div>
     
           <div class="table-responsive">
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
               <tbody>
-                <tr>
-                  <td><b>First Name</b></td>
-                  <td><b>Last Name</b></td>
-                  <td><b>Gender</b></td>
-                  <td><b>Contact</b></td>
-                  <td><b>Email</b></td>
-                  <td><b>Role</b></td>
+                <td><b>Student Number</b></td>
+                <td><b>Registration Number</b></td>
+                <td><b>Course</b></td>
+                <td><b>Supervisor ID</b></td>
                 </tr>
                 <%Iterator itr;%>
                 <% List data = (List)request.getAttribute("data");
@@ -185,7 +194,8 @@
                     <td><%=itr.next()%></td>
                     <td><%=itr.next()%></td>
                     <td><%=itr.next()%></td>
-                    <!--<td><a href="giverole?ID=<%=itr.next()%>"><button class="btn btn-primary">Approve</button></a></td>--><!-- button here -->
+                    <td><%=itr.next()%></td>
+                    <td><a href="supviewstuddetails?ID=<%=itr.next()%>&placement_id=<%=itr.next()%>"><button class="btn btn-primary">Details</button></a></td><!-- button here -->
                 </tr>
                     <%}%>
               </tbody>

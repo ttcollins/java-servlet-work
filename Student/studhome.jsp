@@ -155,6 +155,15 @@
         <div class="container-fluid">
 
           <!-- Page Heading -->
+          <div align="left">
+            <b>Supervisor:</b><i><%=session.getAttribute("sup_fname")%> <%=session.getAttribute("sup_other")%></i>
+          </div>
+          <div align="left">
+            <div class="form-group">
+              <a href="letter"><button class="btn btn-primary">Get Internship Letter</button></a><!-- button here -->
+            </div>
+          </div>
+
     <div align="right">
         <form method="post" action="visits">
             <div class="form-group"><label for="date" class=" form-control-label"><b>Date of Visit: </b></label><input name="visit_date" value="" type="date" id="visit_date" required class="input100">
@@ -210,13 +219,19 @@
         </table>
       </div>
 
-    <div align="center">
-      <div class="form-group">
-        <a href="letter"><button class="btn btn-primary">Get Internship Letter</button></a><!-- button here -->
-      </div>
-    </div>
-
-
+          <div class="container">
+            <div class="card">
+              <div class="card-header"><strong><h3>SUPERVISOR'S DETAILS.</h3></strong></div>
+                <div class="card-body card-block">
+                  <h5>First Name: <b><i><%=session.getAttribute("sup_fname")%></i></b></h5>
+                  <h5>Last Name: <b><i><%=session.getAttribute("sup_other")%></i></b></h5>
+                  <h5>Gender: <b><i><%=session.getAttribute("sup_gender")%></i></b></h5>
+                  <h5>Phone Number: <b><i><%=session.getAttribute("sup_number")%></i></b></h5>
+                  <h5>Email Address: <b><i><%=session.getAttribute("sup_email")%></i></b></h5>
+                </div>
+              </div>
+            </div>
+          </div> 
 
     <script>
         function validate() {

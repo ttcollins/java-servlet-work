@@ -28,24 +28,13 @@ public class suphome extends HttpServlet{
         List dataList = new ArrayList();
         // 6. Process the results
         while (rs.next()) {
-         // 7. Close all connections
-         int stud_id = rs.getInt("user_id");
-         dataList.add(rs.getString("reg_number"));
          dataList.add(rs.getString("std_number"));
+         dataList.add(rs.getString("reg_number"));
          dataList.add(rs.getString("course"));
-         /*String query1 = "select * from users where ID='"+ stud_id +"'";
-         ResultSet rs1 = st.executeQuery(query1);
-         while (rs1.next()) {
-            dataList.add(rs.getString("reg_number"));
-            dataList.add(rs1.getString("fname"));
-            dataList.add(rs1.getString("other"));
-            dataList.add(rs1.getString("gender"));
-            dataList.add(rs1.getString("number"));
-            dataList.add(rs1.getInt("email"));
-            dataList.add(rs1.getInt("course"));
-         }*/
-        }
-        
+         dataList.add(rs.getString("supervisor_id"));
+         dataList.add(rs.getString("user_id"));
+         dataList.add(rs.getInt("placement_id"));
+        }    
         // 7. Close all connections
         st.close();
         con.close();
