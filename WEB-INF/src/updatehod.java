@@ -4,7 +4,46 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import java.sql.*;
 
+//encryption libraries
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.Arrays;
+import java.util.Base64;
+
+import javax.crypto.Cipher;
+import javax.crypto.spec.SecretKeySpec;
+
 public class updatehod extends HttpServlet{
+    private static SecretKeySpec secretKey;
+    private static byte[] key;
+    private static final String ALGORITHM = "AES";
+
+    public void prepareSecreteKey(String myKey) {
+        MessageDigest sha = null;
+        try {
+            key = myKey.getBytes(StandardCharsets.UTF_8);
+            sha = MessageDigest.getInstance("SHA-1");
+            key = sha.digest(key);
+            key = Arrays.copyOf(key, 16);
+            secretKey = new SecretKeySpec(key, ALGORITHM);
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public String encrypt(String strToEncrypt, String secret) {
+        try {
+            prepareSecreteKey(secret);
+            Cipher cipher = Cipher.getInstance(ALGORITHM);
+            cipher.init(Cipher.ENCRYPT_MODE, secretKey);
+            return Base64.getEncoder().encodeToString(cipher.doFinal(strToEncrypt.getBytes("UTF-8")));
+        } catch (Exception e) {
+            System.out.println("Error while encrypting: " + e.toString());
+        }
+        return null;
+    }
+
     public boolean fetch(String email, HttpServletRequest request, HttpServletResponse response){
         // 2. Define the Connection URL
         String url = "jdbc:mysql://localhost/NAD";
@@ -113,10 +152,20 @@ public class updatehod extends HttpServlet{
         String gender = request.getParameter("gender");
         String number = request.getParameter("number");
         String email = request.getParameter("email");
-        String password = request.getParameter("password");
+        String password1 = request.getParameter("password");
         int user_id = (int) session.getAttribute("ID");
         String go = "Your Details have been saved!";
         String dont = "Something went wrong, please try again!";
+
+        //encryption
+        final String secretKey = "secrete";
+
+        String originalString = password1;
+
+        updatehod hodupdate = new updatehod();
+        String encryptedString = hodupdate.encrypt(originalString, secretKey);
+        //String decryptedString = aesEncryptionDecryption.decrypt(encryptedString, secretKey);
+        String password = encryptedString;
 
         if(update(fname, other, gender, number, email, password, user_id)){
             session.setAttribute("email", email);

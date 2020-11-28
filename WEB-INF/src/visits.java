@@ -115,7 +115,7 @@ public class visits extends HttpServlet{
 
         if(fill(date, user_id, sup_id)){
             request.setAttribute("go", go);
-            request.getRequestDispatcher("Student/studhome.jsp").forward(request, response);
+            request.getRequestDispatcher("studhome").forward(request, response);
         }else{
             request.setAttribute("dont", dont);
             request.getRequestDispatcher("Student/studhome.jsp").forward(request, response);

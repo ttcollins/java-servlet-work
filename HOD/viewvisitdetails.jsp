@@ -71,15 +71,6 @@
       </li>
 
       <!-- Divider -->
-      <hr class="sidebar-divider">
-
-      <li class="nav-item active">
-        <a class="nav-link" href="#">
-          <i class="fas fa-fw fa-table"></i>
-          <span>Re-assign Supervisors</span></a>
-      </li>
-      
-      <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block">
 
       <!-- Sidebar Toggler (Sidebar) -->

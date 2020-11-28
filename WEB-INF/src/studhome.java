@@ -205,7 +205,7 @@ public class studhome extends HttpServlet{
       
         String dbUsername = "root";
         String dbPassword = "";
-        String query = "select * from supervisor order by rand() limit 1";
+        String query = "select user_id, MIN(number_of_students) as stud_pop from supervisor";
         try {
         //1. Loading the JDBC driver
         Class.forName("com.mysql.jdbc.Driver");
@@ -222,14 +222,11 @@ public class studhome extends HttpServlet{
         // 6. Process the results
         if (result.next()) {
             int supervisor_id = result.getInt("user_id");
-            int stud_number = result.getInt("number_of_students");
+            int stud_number = result.getInt("stud_pop");
             HttpSession session = request.getSession();
             session.setAttribute("supervisor_id", supervisor_id);
             String query1 = "update student set supervisor_id='"+ supervisor_id +"' where supervisor_id is null";
             int rs = st.executeUpdate(query1);
-            stud_number = stud_number+1;
-            String query2 = "update supervisor set number_of_students='"+ stud_number +"' where user_id='"+ supervisor_id +"'";
-            int rs1 = st.executeUpdate(query2);
             st.close();
             con.close();
             return true;

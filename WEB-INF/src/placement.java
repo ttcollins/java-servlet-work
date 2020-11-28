@@ -105,7 +105,7 @@ public class placement extends HttpServlet{
                 con.close();
                 return true;
             }else{
-                response.sendRedirect("Student/studplacement.jsp");
+                response.sendRedirect("studplacement.jsp");
             }        
             // 7. Close all connections
             rs.close();
@@ -152,7 +152,7 @@ public class placement extends HttpServlet{
             request.getRequestDispatcher("studhome").forward(request, response);
         }else{
             request.setAttribute("placementdont", placementdont);
-            request.getRequestDispatcher("Student/studplacement.jsp").forward(request, response);
+            request.getRequestDispatcher("studplacement.jsp").forward(request, response);
         }
     }
 }

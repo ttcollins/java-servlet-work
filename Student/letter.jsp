@@ -28,7 +28,6 @@
 		float:left;
 		width:50%;
 	}
-
 	.middle{
 		text-align:center;
 
@@ -53,11 +52,37 @@
 	#mainPart{
 		margin:50px 50px 50px 50px;	
 	}
+
+	span{
+		
+	}
+
+	#body{
+		
+	}
 </style>
 </head>
-<body bgcolor="black">
+<body bgcolor="black" onclick="window.print()">
 
-	<div id="letterBody" onclick="window.print()">
+	
+	<div id="letterBody">
+	
+	<div id="official">
+	<div >
+	College of Computing and Information Sciences, 
+	Block A,
+	<br/>
+	Makerere University, 
+	<br/>
+	P.O.Box 7772,
+	<br/>
+	Kampala, Uganda.
+	<br/>
+	3rd April 2020.
+	</div>	
+	</div>
+
+	<!--
 	<div class="middle"> <%= request.getAttribute("fname") %> </div>
 
 	<div id="address">
@@ -67,38 +92,52 @@
 	<div class="right"> <%= request.getAttribute("email") %></div>
 	<div class="right"> <%= request.getAttribute("number") %></div>
 	</div>
+	-->
+	<br/>
+	<div id="body">
+	<p>Good day to you Madam/Sir,</p>
+<h3> RE : <u>LETTER OF INTRODUCTION FROM MAKERERE UNIVERSITY TO PLACE OF INTERNSHIP</u></h3>
 
-	
-		<p>Sire,” <%= request.getAttribute("fname")%>  said, dropping to one knee and holding the gold disc
-up to him with both hands. “I have returned.” $(lname) fell to both knees
-beside him, hands clasped in prayer.
-“I see that,” High Priest Craven said, snatching up the disc. “You did as I
-instructed?”
-“Oh yes, Sire.”
-“Exactly as I instructed?”
-“I located Ghastly Bespoke’s quarters, let myself in—”
-“Let ourselves in,” Thrasher corrected.
-“– and then I located the disc. I substituted—”
-“We substituted,” Thrasher corrected.
-“– the fake disc you had given me, and returned here to you, now, with the
-real disc. So now he has the fake disc and you have the real disc. I live only to
-serve.”
-“We live only to serve,” Thrasher corrected.
-“You don’t live,” the Master said, examining his prize. “And nobody saw
-you?”
-“Nobody, Sire. I was like the wind.”
-“We were like the wind,” said Thrasher.
-“But I was like the wind more.”
-“I was more breeze-like,” Thrasher said, and bowed forward until his
-forehead was touching the ground. It was, once again, an unsurprisingly
-pathetic display, and one that Scapegrace would have no problem surpassing.
-He laid himself flat on the ground, face stuck into the dirt, and waved his
-arms in the air. “Give me another order, Master, I beg of you.”
-“Me too,” Thrasher said, lying beside Scapegrace, doing his best to
-wriggle deeper into the dirt. Furious, Scapegrace started wriggling alongside
-him.
+
+		<p>
+		This is to introduce a student of our university  <span><%= request.getAttribute("fname")%> <%= request.getAttribute("other") %></span> at the College of Computing and Information Systems to carry out their internship at your establishment for the duration of the period MAY 2020 - JULY 2020. 
+
+<br/>
+<br/>
+		We do hope you will consider <span><%= request.getAttribute("fname")%> <%= request.getAttribute("other") %></span> as an addition to your fine establishment.
+
 </p>
+</div>
+	<div class="left">
+	Yours faithfully,
+	<br/>
+	
+	<i>Dean of College's signature</i>
+	
+	<br/>
+	name,
+	<br/>
+	Dean of College of Computing and Information Sciences.
+	<br/>
+	</div>
+
+
+	<div class="right">
+	Yours faithfully,
+	<br/>
+	
+	<i>Vice Chancellor's signature</i>
+	<br/>
+	name,
+	<br/>
+	Vice-Chancellor of Makerere University.
+	</div>	
+
+
 
 	</div>
+
+	
+
 </body>
 </html>

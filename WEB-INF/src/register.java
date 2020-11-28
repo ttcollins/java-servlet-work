@@ -4,7 +4,46 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import java.sql.*;
 
+//encryption libraries
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.Arrays;
+import java.util.Base64;
+
+import javax.crypto.Cipher;
+import javax.crypto.spec.SecretKeySpec;
+
 public class register extends HttpServlet{
+    private static SecretKeySpec secretKey;
+    private static byte[] key;
+    private static final String ALGORITHM = "AES";
+
+    public void prepareSecreteKey(String myKey) {
+        MessageDigest sha = null;
+        try {
+            key = myKey.getBytes(StandardCharsets.UTF_8);
+            sha = MessageDigest.getInstance("SHA-1");
+            key = sha.digest(key);
+            key = Arrays.copyOf(key, 16);
+            secretKey = new SecretKeySpec(key, ALGORITHM);
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public String encrypt(String strToEncrypt, String secret) {
+        try {
+            prepareSecreteKey(secret);
+            Cipher cipher = Cipher.getInstance(ALGORITHM);
+            cipher.init(Cipher.ENCRYPT_MODE, secretKey);
+            return Base64.getEncoder().encodeToString(cipher.doFinal(strToEncrypt.getBytes("UTF-8")));
+        } catch (Exception e) {
+            System.out.println("Error while encrypting: " + e.toString());
+        }
+        return null;
+    }
+
     public boolean registernormal(String fname, String other, String gender, String number, String email, String password) {
         // 2. Define the Connection URL
         String url = "jdbc:mysql://localhost/NAD";
@@ -106,12 +145,21 @@ public class register extends HttpServlet{
         String gender = request.getParameter("gender");
         String number = request.getParameter("number");
         String email = request.getParameter("email");
-        String password = request.getParameter("password");
+        String password1 = request.getParameter("password");
         String go = "Your details have been saved, Please login!";
         String dont = "Something went wrong, please try again!";
         String type1 = "Student";
         String type2 = "Faculty Member";
 
+        //encryption
+        final String secretKey = "secrete";
+
+        String originalString = password1;
+
+        register reg = new register();
+        String encryptedString = reg.encrypt(originalString, secretKey);
+        //String decryptedString = aesEncryptionDecryption.decrypt(encryptedString, secretKey);
+        String password = encryptedString;
 
         if(user_type.equals(type1)){
             int role = 3;
